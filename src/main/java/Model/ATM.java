@@ -1,39 +1,19 @@
 package Model;
 
-// create online shop
-// it should have username and password,it's the username and pass; correct it passed
-// add few products with their price
 
-//MVP
-// withdraw
-// Deposit Funds
-// setting the count number and username
-
-
-
-// to come
-// setup the passwored
-// View Balance
-///-----------
-// this should be connected with db
-
-
-// what should i do?
-// on database create a colum (table name should be ATM)
-//
-
- class ATM {
+ public class ATM {
      public int AtmUserId;
      public String AtmUserName;
      public int AccoutNumber;
      public int Balance;
 
-     public ATM(int atmUserId, String atmUserName, int accoutNumber, int balance) {
+     public ATM(int atmUserId, String atmUserName, int accountNumber) {
          AtmUserId = atmUserId;
          AtmUserName = atmUserName;
-         AccoutNumber = accoutNumber;
-         Balance = balance;
+         AccoutNumber = accountNumber;
      }
+
+
 
      public int getAtmUserId() {
          return AtmUserId;
@@ -51,8 +31,12 @@ package Model;
          AtmUserName = atmUserName;
      }
 
-     public int getAccoutNumber() {
+     public int getAccountNumber() {
          return AccoutNumber;
+     }
+
+     public String getAccountHolderName(){
+         return  this.AtmUserName;
      }
 
      public void setAccoutNumber(int accoutNumber) {
@@ -75,5 +59,30 @@ package Model;
                  ", AccoutNumber=" + AccoutNumber +
                  ", Balance=" + Balance +
                  '}';
+     }
+
+     public void setAccountHolderName(String name) {
+        this.AtmUserName = name;
+     }
+
+     public void setAccountNumber(int accNo) {
+         this.AccoutNumber = accNo;
+     }
+
+     public int withdraw(int withDrawAmount) {
+         if(withDrawAmount > this.Balance){
+             System.out.println("WE cant let you withdraw money because your budget is lower than your amount!");
+             return 0;
+         }else
+             return this.Balance - withDrawAmount;
+     }
+
+     public String getName() {
+         return  this.AtmUserName;
+     }
+
+
+     public int getId() {
+         return  this.AtmUserId;
      }
  }

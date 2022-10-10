@@ -1,77 +1,54 @@
 
+import AtmReposotory.AtmReposotory;
+import Model.ATM;
+
+import java.sql.SQLException;
 import java.util.Scanner;
 
-/*
-* System.out.println("Welcome to the ATM Project!");
-				System.out.println("Enter your customer Number");
-				setCustomerNumber(menuInput.nextInt());
-*/
+public class Main extends AtmReposotory {
 
-/*
-public void getAccountType() {
-		System.out.println("Select the Account you Want to Access: ");
-		System.out.println(" Type 1 - Checking Account");
-		System.out.println(" Type 2 - Saving Account");
-		System.out.println(" Type 3 - Exit");
-* */
+    public Main() throws SQLException {
+    }
 
-/*
-case 3:
-			System.out.println("Thank You for using this ATM, bye.  \n");
-			break;
+    public static void main(String[] args) throws SQLException {
 
-* */
+        ATM user1ATM = new ATM(404,"Unknown",4545);
 
-/*
-public void getChecking() {
-		System.out.println("Checking Account: ");
-		System.out.println(" Type 1 - View Balance");
-		System.out.println(" Type 2 - Withdraw Funds");
-		System.out.println(" Type 3 - Deposit Funds");
-		System.out.println(" Type 4 - Exit");
-		System.out.print("Choice: ");
-
-* */
-
-/* switch (selection) {
-		case 1:
-			System.out.println("Checking Account Balance: " + moneyFormat.format(getCheckingBalance()));
-			getAccountType();
-			break;
-* */
-public class Main extends ATM{
-
-    public static void main(String[] args) {
-
-        ATM user1ATM = new ATM();
+        AtmReposotory repo = new AtmReposotory();
 
         Scanner input = new Scanner(System.in);
+        System.out.println("Please select any task you want to do:\n "+"" +
+                "1. Register yourself +" +
+                "\n2. Check the balance" +
+                "\n3. Withdraw money"  );
 
+        String userInput = input.next();
+        switch(userInput)  {
+            case "1":
+                System.out.println("Please enter your name: ");
+                String name = input.nextLine();
+                System.out.println("Please enter your account number: ");
+                int accNo = input.nextInt();
+                System.out.println("Please enter your id: ");
+                int userId = input.nextInt();
+                user1ATM.setAccountNumber(userId);
+                user1ATM.setAccountHolderName(name);
+                user1ATM.setAtmUserId(userId);
+                System.out.println("Registered successfully!");
+                break;
 
+            case "2":
+                System.out.println("Checking the balance");
+                break;
 
-        user1ATM.setBalance(4500);
+            case "3":
+                System.out.println("Withdrawing the money");
+                break;
+            default:
+                System.out.println("Invalid selection");
+                break;
+        }
 
-        System.out.println("Please enter your name : ");
-        String name = input.nextLine();
-        user1ATM.setAccountHolderName(name);
-
-        System.out.println("Username: "+ user1ATM.getAccountHolderName());
-
-        System.out.println("Please enter your account number : ");
-        long accNo = input.nextInt();
-        user1ATM.setAccountNumber(accNo);
-
-        System.out.println("user account number: " + user1ATM.getAccountNumber());
-
-        System.out.println("Your balance is " + user1ATM.getBalance());
-
-        // withdrawing $500 from my account
-        System.out.println("Please enter withdrawal amount : ");
-        long withDrawAmount = input.nextLong();
-
-        System.out.println("Withdrawing "  + withDrawAmount +  "  from account  : " + user1ATM.withdraw(withDrawAmount));
-
-        System.out.println("Now after withdrawing, my  balance is " + user1ATM.getBalance());
     }
 }
 

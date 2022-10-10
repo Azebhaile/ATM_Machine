@@ -1,11 +1,14 @@
+package ATMService;
 
+import AtmReposotory.AtmReposotory;
+import Model.ATM;
 import Util.ConnectionUtil;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public class AtmService {
+public class AtmService extends AtmReposotory {
     AtmReposotory ar;
 
 
@@ -19,26 +22,19 @@ public class AtmService {
         this.ar = ar;
     }
 
-    //
-    public List<ATM> getAllAtmUsers() {
-
-        return ar.getAllAtmUsers();
+    public void getAllAtmUsers() {
+        ar.getAllAtmUsers();
     }
-    public ATM getAllAtmUsersByName(int id){
-        return ar.getAllAtmUsersByName (id);
+    public List getAllAtmUsersByName(int id){
+        return ar.getAllAtmUsersByName(id);
     }
 
     public void deleteAtmUsersById(int id ){
-       ar.deleteAtmUsersById(id);
+
+        ar.deleteAtmUsersById(id);
     }
-    public ATM UpdateAtmUsersById(ATM atm){
-        return ar.UpdateAtmUsersById(atm);
-    }
-    public void addAtmUsers(ATM atm) {
-        ar.addAtmUsers(ATM);
+
+    public void UpdateAtmUsersById(ATM atm) {
+        ar.UpdateAtmUsersById(atm);
     }
 }
-
-
-
-//
