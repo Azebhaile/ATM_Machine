@@ -1,7 +1,9 @@
 package Model;
 
 
- public class ATM {
+import java.util.List;
+
+public class ATM {
      public int AtmUserId;
      public String AtmUserName;
      public int AccoutNumber;
@@ -35,7 +37,7 @@ package Model;
          return AccoutNumber;
      }
 
-     public String getAccountHolderName(){
+     public List getAccountHolderName(){
          return  this.AtmUserName;
      }
 

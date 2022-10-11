@@ -1,134 +1,80 @@
 package AtmReposotory;
 
 import Model.ATM;
-import Util.ConnectionUtil;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AtmReposotory extends  ATM{
-    Connection conn;
-    public  AtmReposotory() throws SQLException {
+    List users = new ArrayList<ATM>();
+    List atms = new ArrayList<ATM>();
+    public  AtmReposotory()  {
         super(34,"name",343);
-        conn = ConnectionUtil.getConnection();
     }
-    public String getAccountHolderName(){
-        List AccountHolderName = new ArrayList<ATM>();
-        try {
-            Statement statement = conn.createStatement();
-            ResultSet ar = statement.executeQuery("Select * From ATM");
-            while(ar.next()){
-                ATM loadedATM = new ATM((ar.getInt("id")),(ar.getString("name")),Integer.parseInt(ar.getString("accNo")));
-                AccountHolderName.add(loadedATM);
+
+
+    public Object getAccountHolderName(int id) {
+        Object holderName = "none";
+        for(int i=0; i<users.size(); i++){
+            if(users.get(i).toString() == String.valueOf(id)){
+                holderName = users.get(i);
             }
-        }catch(SQLException e){
-            e.printStackTrace();
         }
-        return AccountHolderName.toString();
-    }
-
-
-    public String getAccountHolderName(int id) {
-        ATM loadedATM = null;
-        try{
-            PreparedStatement statement = conn.prepareStatement("Select * from ATM where id = " + id);
-            statement.setInt(1, id);
-            ResultSet ar = statement.executeQuery();
-            loadedATM = new ATM((ar.getInt("id")),(ar.getString("name")),Integer.parseInt(ar.getString("accNo")));
-            return loadedATM.getAtmUserName();
-        }catch(SQLException e){
-            e.printStackTrace();
-
-        }
-        return "";
+        return holderName;
     }
 
     public void getAllAtmUsers(){
-        try{
-            PreparedStatement statement = conn.prepareStatement("Select * from ATM ");
+        List user = new ArrayList<ATM>();
 
-            ResultSet ar = statement.executeQuery();
-            System.out.println(ar);
-        }catch(SQLException e){
-            e.printStackTrace();
-
+        for(int i=0; i<users.size(); i++) {
+            user.add(users.get(i));
         }
+        System.out.println(user);
     }
 
-    public void removeATMById(int id ){
-        try{
-            PreparedStatement statement = conn.prepareStatement("Delete from ATM where id = "+id);
-            statement.setInt(1, id);
-            ResultSet ar = statement.executeQuery();
-        }catch(SQLException e){
-            e.printStackTrace();
-        }}
+    public void removeATMById(int id ) {
+        for(int i=0; i<users.size(); i++){
+            if(users.get(i).toString() == String.valueOf(id)){
+                users.remove(i);
+                System.out.println("Removed " + users.get(i) + " gently!");
+            }
+        }
+
+    }
     public void addATM(ATM atm){
-
-        try{
-            PreparedStatement statement = conn.prepareStatement("insert into ATM(id, name, accNO) " +
-                    "values ("+ atm.AtmUserId +"," + atm.AtmUserName + ", "+ atm.AccoutNumber+ ")");
-            statement.setLong(1,atm.getId());
-            statement.setString(2,atm.getName());
-            statement.setLong(3,atm.getAccountNumber());
-
-            statement.executeUpdate();
-        }catch(SQLException e){
-            e.printStackTrace();
+        List atms2 = new ArrayList<ATM>();
+        for(int i=0; i<users.size(); i++){
+            atms2.add(i);
         }
     }
 
-    public  ATM updateATMById(ATM atm ){
-        ATM returnval  = null;
-        try{
-            PreparedStatement statement = conn.prepareStatement("Update ATM set name= "+atm.AtmUserName+",accNo = "+atm.AccoutNumber+" where id = " +atm.AtmUserId);
-            statement.setString(2, atm.getName());
-            statement.setLong(3, atm.getAccountNumber());
-            ResultSet ar = statement.executeQuery();
-            returnval = new ATM((ar.getInt("id")),(ar.getString("name")),Integer.parseInt(ar.getString("accNo")));
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
-        return returnval;
+    public  void updateATMById(ATM atm ){
+       for(int i=0; i<users.size(); i++){
+           if(atms.get(i).toString() == atm.toString()){
+               atms.remove(i);
+               atms.add(i);
+               System.out.println("JUpdate the atm with id");
+           }
+       }
     }
 
     public List getAllAtmUsersByName(int id) {
-        List users = null;
-        try{
-            Statement st = conn.createStatement();
-            ResultSet rs  = st.executeQuery("Select * from ATM where id = " + id);
-            while(rs.next()){
-                users.add(rs.getString("name"));
-            }
+        List names = new ArrayList<ATM>();
+
+        for(int i=0; i<users.size(); i++){
+            names.add(users.get(i));
         }
-        catch(SQLException e){
-            e.printStackTrace();;
-        }
-        return users;
+
+        return names;
     }
 
     public void deleteAtmUsersById(int id) {
-        try{
-            Statement st = conn.createStatement();
-            st.executeQuery("delete from ATM where id = " + id);
+        for(int i=0; i<users.size(); i++){
+            if(users.get(i).toString() == String.valueOf(id)){
+                users.remove(i);
+            }
         }
-        catch(SQLException e){
-            e.printStackTrace();;
-        }
-    }
-
-    public void UpdateAtmUsersById(ATM atm) {
-        try{
-            Statement st = conn.createStatement();
-            st.executeQuery("UPDATE ATM" + "SET " +"id = " +atm.AtmUserId + "accNo = " +atm.AccoutNumber + "name = " +atm.AtmUserName + "WHERE" +
-                    "id =" + atm.getAtmUserId());
-            System.out.println("Updated atm users by id!");
-        }
-        catch(SQLException e){
-            e.printStackTrace();;
-        }
-
     }
 
 
