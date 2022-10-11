@@ -37,7 +37,7 @@ public class ATM {
          return AccoutNumber;
      }
 
-     public List getAccountHolderName(){
+     public String getAccountHolderName(){
          return  this.AtmUserName;
      }
 

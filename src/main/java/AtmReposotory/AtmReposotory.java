@@ -24,6 +24,7 @@ public class AtmReposotory extends  ATM{
         return holderName;
     }
 
+
     public void getAllAtmUsers(){
         List user = new ArrayList<ATM>();
 
