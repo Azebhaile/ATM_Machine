@@ -21,7 +21,7 @@ public class Main extends AtmReposotory {
                 System.out.println("Your current balance is lower i.e balance is " + user.getBalance()+" and your amount is "+ amount+"...!");
 
             }else{
-                user.setBalance(user.getBalance());
+                user.setBalance(user.getBalance() - amount);
                 System.out.println("Your new balance is : " + user.getBalance());
             }
         }
@@ -35,11 +35,11 @@ public class Main extends AtmReposotory {
 
     public static void main(String[] args) throws SQLException {
 
-        ATM user1ATM = new ATM(404,"Unknown",4545);
+        ATM user1ATM = new ATM(404,"Unknown",4545, 1000);
 
         AtmReposotory repo = new AtmReposotory();
 
-        ATM user = new ATM(0, "", 0);
+        ATM user = new ATM(0, "", 0, 1000);
 
         Scanner input = new Scanner(System.in);
         System.out.println("Please select any task you want to do:\n "+"" +
@@ -49,12 +49,12 @@ public class Main extends AtmReposotory {
         int userInput = input.nextInt();
         switch(userInput)  {
             case 1:
-                System.out.println("Please enter your full name: ");
+                System.out.println("Please Enter your Name: ");
                 String name = input.next();
 
-                System.out.println("Please enter your pin number: ");
+                System.out.println("Please Enter your pin number: ");
                 int accNo = input.nextInt();
-                System.out.println("Please enter your your id: ");
+                System.out.println("Please Enter your User id: ");
                 int userId = input.nextInt();
 
                 user.setAccountHolderName(name);
@@ -64,7 +64,7 @@ public class Main extends AtmReposotory {
                 System.out.println("Please deposit some money as your currently account balance is 0. Press 'y' for yes or 'n' for no.");
                 char inputt = input.next().charAt(0);
                 if(inputt == 'y' || inputt=='Y'){
-                    System.out.println("Enter the amount you wanna deposit : ");
+                    System.out.println("Enter the amount you want to deposit : ");
                     int amount = input.nextInt();
                     user.setBalance(amount);
                     System.out.println("You have successfully deposited "+amount+ " in you account");
@@ -80,7 +80,7 @@ public class Main extends AtmReposotory {
                 char yesOrno = input.next().charAt(0);
                 if(yesOrno == 'y' || yesOrno=='Y'){
                     System.out.println("Checking the balance...");
-                    System.out.println(user.getAtmUserName() + ", your balance is currently $" + user.getBalance() +". thanks for coming!");
+                    System.out.println(user.getAtmUserName() + ", your balance is currently $" + user.getBalance() +". Thank you for coming!");
                 }else if (yesOrno == 'n' || yesOrno=='N'){
                     withdraw(user);
                 }

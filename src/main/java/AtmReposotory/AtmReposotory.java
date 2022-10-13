@@ -10,7 +10,7 @@ public class AtmReposotory extends  ATM{
     List users = new ArrayList<ATM>();
     List atms = new ArrayList<ATM>();
     public  AtmReposotory()  {
-        super(34,"name",343);
+        super(34,"name",343, 1000);
     }
 
 

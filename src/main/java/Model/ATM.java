@@ -9,10 +9,12 @@ public class ATM {
      public int AccoutNumber;
      public int Balance;
 
-     public ATM(int atmUserId, String atmUserName, int accountNumber) {
+     public ATM(int atmUserId, String atmUserName, int accountNumber, int balance) {
          AtmUserId = atmUserId;
          AtmUserName = atmUserName;
          AccoutNumber = accountNumber;
+         Balance = balance;
+
      }
 
 
@@ -73,7 +75,7 @@ public class ATM {
 
      public int withdraw(int withDrawAmount) {
          if(withDrawAmount > this.Balance){
-             System.out.println("WE cant let you withdraw money because your budget is lower than your amount!");
+             System.out.println("Your available balance is lower than current amount!");
              return 0;
          }else
              return this.Balance - withDrawAmount;

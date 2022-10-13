@@ -34,7 +34,9 @@ public class AtmService extends AtmReposotory {
         ar.deleteAtmUsersById(id);
     }
 
-//    public void UpdateAtmUsersById(ATM atm) {
-//        ar.UpdateAtmUsersById(atm);
-//    }
+    public void removeAtmById(int id ){
+
+        ar.removeATMById(id);
+    }
+
 }
